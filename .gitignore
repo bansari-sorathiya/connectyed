@@ -1,0 +1,33 @@
+# Ignore node_modules
+/node_modules
+
+# Ignore storage except for the storage/framework and storage/logs directories
+/storage/*
+!/storage/framework
+!/storage/framework/*
+!/storage/logs
+
+# Ignore vendor (if you use Composer)
+/vendor
+
+# Ignore environment file
+.env
+
+# Ignore composer lock file (optional)
+/composer.lock
+
+# Ignore npm lock file (optional)
+/package-lock.json
+
+# Ignore public/hot file for Laravel Mix
+/public/hot
+/public/build
+# Ignore yarn lock file
+/yarn.lock
+
+# Ignore compiled view files
+/storage/framework/views/*
+
+# Ignore cache files
+/storage/framework/cache/*
+

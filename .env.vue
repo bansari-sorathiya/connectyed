@@ -1,0 +1,2 @@
+VUE_APP_ZOOM_REDIRECT_URI=https://www.connectyed.com/zoom/callback
+VUE_APP_ZOOM_CLIENT_ID=SlWvE1kTieYVeGTQnxtxg

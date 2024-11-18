@@ -1,0 +1,20 @@
+[05-Nov-2024 03:27:43 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 6
+[05-Nov-2024 03:27:43 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 6
+[05-Nov-2024 03:27:43 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 6
+[05-Nov-2024 03:27:43 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 6
+[05-Nov-2024 03:27:58 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 27
+[05-Nov-2024 03:27:58 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 27
+[05-Nov-2024 03:27:58 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 27
+[05-Nov-2024 03:27:58 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 27
+[05-Nov-2024 03:27:59 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home/mwf8v6y733jl/connectyed.com/routes/web.php on line 27
+[13-Nov-2024 18:59:39 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 18:59:41 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:06:17 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:06:19 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:07:38 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:07:40 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:12:55 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:13:32 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:13:38 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:16:30 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0
+[13-Nov-2024 19:16:49 UTC] PHP Warning:  Cannot load module "pdo_mysql" because required module "mysqlnd" is not loaded in Unknown on line 0

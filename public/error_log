@@ -1,0 +1,45 @@
+[22-Oct-2024 20:18:27 UTC] PHP Warning:  Undefined variable $leaveUrl in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 295
+[22-Oct-2024 20:18:27 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 308
+[22-Oct-2024 20:18:27 UTC] PHP Warning:  Undefined variable $name in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 310
+[22-Oct-2024 20:18:27 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[22-Oct-2024 20:18:27 UTC] PHP Warning:  Undefined variable $password in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 316
+[22-Oct-2024 20:19:47 UTC] PHP Warning:  Undefined variable $leaveUrl in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 295
+[22-Oct-2024 20:19:47 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[22-Oct-2024 20:20:01 UTC] PHP Warning:  Undefined variable $leaveUrl in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 295
+[22-Oct-2024 20:20:01 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[22-Oct-2024 20:20:32 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[26-Oct-2024 06:58:25 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[26-Oct-2024 06:59:36 UTC] PHP Warning:  Undefined variable $meetingID in /home/mwf8v6y733jl/connectyed.com/public/zoom.php on line 312
+[05-Nov-2024 03:54:10 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[05-Nov-2024 03:54:17 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[05-Nov-2024 03:56:11 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[05-Nov-2024 03:58:48 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[05-Nov-2024 03:58:54 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[05-Nov-2024 03:59:19 UTC] PHP Fatal error:  Cannot declare class App\Http\Controllers\API\PaymentController, because the name is already in use in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/PaymentController.php on line 11
+[06-Nov-2024 01:51:14 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\GoogleMeetController::createMeeting() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/GoogleMeetController.php on line 486
+[06-Nov-2024 01:51:26 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\GoogleMeetController::createMeeting() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/GoogleMeetController.php on line 486
+[06-Nov-2024 01:51:30 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\GoogleMeetController::createMeeting() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/GoogleMeetController.php on line 486
+[06-Nov-2024 01:51:33 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\GoogleMeetController::createMeeting() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/GoogleMeetController.php on line 486
+[06-Nov-2024 01:51:40 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\GoogleMeetController::createMeeting() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/GoogleMeetController.php on line 486
+[11-Nov-2024 16:32:30 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::generateUsername() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 538
+[11-Nov-2024 16:36:07 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 517
+[11-Nov-2024 18:04:34 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:07:54 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:08:15 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:08:46 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:10:49 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:11:03 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:11:15 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:11:25 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:11:41 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:12:00 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:12:10 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:19:30 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:23:59 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:24:44 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:37:01 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:37:01 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 540
+[11-Nov-2024 18:50:45 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getClientsByMatchmakerId() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 591
+[11-Nov-2024 18:55:53 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::getAllClients() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 557
+[12-Nov-2024 22:27:09 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::updateClient() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 576
+[12-Nov-2024 22:27:27 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\API\ClientController::updateClient() in /home/mwf8v6y733jl/connectyed.com/app/Http/Controllers/API/ClientController.php on line 576
