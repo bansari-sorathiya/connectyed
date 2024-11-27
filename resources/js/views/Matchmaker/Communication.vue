@@ -402,7 +402,7 @@ export default {
         );
 
         if (response.data.success) {
-          alert('Meeting scheduled successfully!');
+          alert(response.data.message);
           // Optionally, you can redirect or perform additional actions here.
 
           // Reset form

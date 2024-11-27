@@ -155,6 +155,7 @@ Route::middleware('auth:api')->group(function () {
         ->name('product.payment.success');
     Route::get('/payment/cancel', [PaymentController::class, 'cancel'])
         ->name('product.payment.cancel');
+    Route::get('/stripe_payment/success/{meeting_id}',[GoogleMeetController::class, 'stripeSuccess'])->name('payment.success');
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])

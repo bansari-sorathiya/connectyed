@@ -29,6 +29,37 @@ class ClientController extends Controller
         $this->middleware(['auth:api', 'verified'])->except(['getPublicClientsByMatchmakerId']);
     }
 
+    public function index(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthenticated'
+                ], 401);
+            }
+
+            // Fetch clients based on user role
+            $clients = MatchmakerClient::with(['user:id,name,email', 'user.profile'])
+                ->where('matchmaker_id', $user->id)
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'data' => $clients,
+                'message' => 'Clients fetched successfully'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch clients',
+            ], 500);
+        }
+    }
+
     /**
      * Add a new client under the authenticated matchmaker.
      *

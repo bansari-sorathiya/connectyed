@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Meeting;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Auth;
-use App\Notifications\MeetingScheduledNotification;
-use Stripe\StripeClient;
-use App\Notifications\MeetingPaymentNotification;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 use Google_Client;
-use Google_Service_Calendar;
-use Google_Service_Calendar_Event;
-use Google_Service_Calendar_EventDateTime;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Firebase\JWT\JWT;
+use GuzzleHttp\Client;
+use App\Models\Meeting;
+use Stripe\StripeClient;
+use Google_Service_Calendar;
+use Illuminate\Http\Request;
+use App\Services\ZoomService;
+use Google_Service_Calendar_Event;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Validator;
+use Google_Service_Calendar_EventDateTime;
+use Illuminate\Support\Facades\Notification;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use App\Notifications\MeetingPaymentNotification;
+use App\Notifications\MeetingScheduledNotification;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 
@@ -150,12 +156,13 @@ class GoogleMeetController extends Controller
      */
     public function createMeeting(Request $request)
     {
+        try{  
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
             'matchmaker_id' => 'required|exists:users,id',
             'client_ids' => 'required|array|min:1|max:2',
             'start_time' => 'required|date',
-            'duration' => 'required|in:15,30,60,120',
+            'duration' => 'required|in:15,30,60,120,1440',
         ]);
 
         if ($validator->fails()) {
@@ -176,7 +183,7 @@ class GoogleMeetController extends Controller
                 'message' => 'Unauthorized. Please log in.',
             ], 401);
         }
-
+  
         // Prepare Zoom meeting data
         $roomTitle = "Meeting room";
         $roomDuration = $request->duration;
@@ -188,18 +195,17 @@ class GoogleMeetController extends Controller
             'date' => $roomTiming->toISOString(),
             'duration' => $roomDuration,
             'password' => rand(10000, 99999), // Or use a more secure way to generate passwords
-            'created_id' => $authUser->id,
+            'created_id' => 1,
             'api_type' => 'global',
             'host_video' => 'enable',
             'join_before_host' => 'enable',
             'client_video' => 'enable',
-            'description' => 'This is my first ' . $roomTitle . '.',
+            'description' => 'This is my first ' . "Meeting room" . '.',
             'timezone' => config('app.timezone'),
         ];
 
-        $accessToken = $this->getAccessToken();
-
         // Create Zoom meeting
+        $accessToken = $this->getAccessToken();
         $response = $this->createAMeeting($data, $accessToken);
 
 
@@ -225,7 +231,7 @@ class GoogleMeetController extends Controller
             ];
 
             if ($authUser->role === 'client') {
-
+                // dd($meetingData);
                 // Save meeting record to your database (assuming a Meeting model exists)
                 Meeting::create($meetingData);
 
@@ -242,7 +248,7 @@ class GoogleMeetController extends Controller
                 $stripe = new StripeClient($stripeSecret);
             }
             // Determine amount and payment flow based on user role
-            if ($authUser->role === 'client') {
+            if ($authUser->role === 'client') { 
                 // Client is scheduling: require payment
                 try {
                     $paymentLink = $stripe->paymentLinks->create([
@@ -272,7 +278,7 @@ class GoogleMeetController extends Controller
                     Log::error('Error creating Stripe payment link', ['error' => $e->getMessage()]);
                     return response()->json([
                         'success' => false,
-                        'message' => 'Error creating payment link',
+                        'message' => 'Error creating payment link'.$e->getMessage(),
                     ], 500);
                 }
             } else {
@@ -284,21 +290,14 @@ class GoogleMeetController extends Controller
                         'status' => 'confirmed',
                     ]);
 
-                    // Save meeting for each client
+                    // Save meeting for each client and notify them
                     $newMeeting = Meeting::create($clientMeetingData);
-                    // Notification::send($client, new MeetingScheduledNotification($newMeeting));
+                    Notification::send($client, new MeetingScheduledNotification($newMeeting));
                 }
 
                 // Notify the matchmaker
-                // $authUser->notify(new MeetingScheduledNotification($meetingData));
-                return response()->json([
-                    'success' => true,
-                    'data' => [
-                        'start_url' => $response->start_url,
-                        'join_url' => $response->join_url,
-                    ],
-                    'message' => 'Meeting scheduled successfully for all clients.',
-                ], 200);
+                $authUser->notify(new MeetingScheduledNotification($newMeeting));
+                return response()->json(['status'=> true , 'message' => "Meeting Scheduled Successfully. Please Check Your Inbox For JOINING LINK"]);
             }
         } else {
             return response()->json([
@@ -306,6 +305,29 @@ class GoogleMeetController extends Controller
                 'message' => 'Failed to create meeting on Zoom.',
             ], 500);
         }
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['status' => 500 , 'message' => "Something went wrong"]);
+        }
+    }
+
+    public function getAccessToken() {
+        $key = env('ZOOM_CLIENT_ID');
+        $secret = env('ZOOM_CLIENT_SECRET');
+        $token_url = env('ZOOM_TOKEN_URL');
+        $accountId = env('ZOOM_ACCOUNT_ID');
+
+
+        $base64String = base64_encode(env('ZOOM_CLIENT_ID') . ':' . env('ZOOM_CLIENT_SECRET'));
+
+        $response = Http::withHeaders([
+            "Content-Type"=> "application/x-www-form-urlencoded",
+            "Authorization"=> "Basic {$base64String}"
+        ])->post("https://zoom.us/oauth/token?grant_type=account_credentials&account_id={$accountId}");
+
+        $data = json_decode($response->getBody(), true);   
+        return $data['access_token'];
     }
 
     protected function createAMeeting($data, $accessToken)
@@ -315,8 +337,7 @@ class GoogleMeetController extends Controller
             'Authorization: Bearer ' . $accessToken,
             'Content-Type: application/json',
         ];
-
-        $postFields = json_encode($data);
+        $postFields = json_encode($data);   
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -332,6 +353,29 @@ class GoogleMeetController extends Controller
         return json_decode($response);
     }
 
+    /*
+    *STRIPE SUCCESS METHOD TO REDIRECT AFTER PAYMENT SUCCESSFULL 
+    */
+    public function stripeSuccess($meeting_id) {
+        try{
+            //Fetch meeting data from the Db
+            $meeting = Meeting::where('google_meet_id',$meeting_id)->first();
+            if($meeting) {
+                $authUser = Auth::user();
+                $matchmaker = User::join('meetings', 'users.id' , 'meetings.matchmaker_id')->where('google_meet_id',$meeting_id)->first();
+                
+                // Notify the client
+                $authUser->notify(new MeetingScheduledNotification($meeting));
+                $matchmaker->notify(new MeetingScheduledNotification($meeting));
+                
+                return redirect()->to('/client/communication');
+            } else {
+                return response()->json('404 : No Meeting Found Or Invalid Meeting Id', JSON_PRETTY_PRINT);
+            }
+        } catch(\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
     /**
      * Refresh the Google access token for a given user.
      *

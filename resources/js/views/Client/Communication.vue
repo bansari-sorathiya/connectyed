@@ -420,7 +420,7 @@ export default {
           const { payment_link } = response.data.data;
 
           // Notify the user
-          alert('🔗 Redirecting to payment...');
+          alert('Meeting Created Successfully...Check your indox after making payment! 🔗 Redirecting to payment...');
 
           // Redirect to Stripe Checkout
           window.location.href = payment_link;

@@ -43,7 +43,7 @@
         "vue-gtag": "^2.0.1",
         "vue-loader": "^17.4.2",
         "vue-meta": "^2.4.0",
-        "vue-router": "^4.3.2",
+        "vue-router": "^4.4.5",
         "vuedraggable": "^2.24.3",
         "vuex": "^4.1.0",
         "vuex-persistedstate": "^4.1.0"

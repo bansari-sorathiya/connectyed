@@ -17,7 +17,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI'),
+        'redirect_uri' => env('GOOGLE_REDIRECT_URI'),
         'api_url' => env('GOOGLE_API_URL', 'https://www.googleapis.com/calendar/v3'),
     ],
 
