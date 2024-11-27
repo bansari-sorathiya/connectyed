@@ -195,12 +195,12 @@ class GoogleMeetController extends Controller
             'date' => $roomTiming->toISOString(),
             'duration' => $roomDuration,
             'password' => rand(10000, 99999), // Or use a more secure way to generate passwords
-            'created_id' => 1,
+            'created_id' => $authUser->id,
             'api_type' => 'global',
             'host_video' => 'enable',
             'join_before_host' => 'enable',
             'client_video' => 'enable',
-            'description' => 'This is my first ' . "Meeting room" . '.',
+            'description' => 'This is my first ' . $roomTitle . '.',
             'timezone' => config('app.timezone'),
         ];
 
