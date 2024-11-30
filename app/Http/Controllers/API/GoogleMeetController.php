@@ -308,7 +308,7 @@ class GoogleMeetController extends Controller
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json(['status' => 500 , 'message' => "Something went wrong"]);
+            return response()->json(['status' => 500 , 'message' => "Something went wrong" . $e->getMessage()]);
         }
     }
 
@@ -326,8 +326,13 @@ class GoogleMeetController extends Controller
             "Authorization"=> "Basic {$base64String}"
         ])->post("https://zoom.us/oauth/token?grant_type=account_credentials&account_id={$accountId}");
 
-        $data = json_decode($response->getBody(), true);   
-        return $data['access_token'];
+        $data = json_decode($response->getBody(), true); 
+        if($data['access_token']) {
+            return $data['access_token'];
+        } else {
+            return "Please Check Your Zoom Credentials";
+        }
+
     }
 
     protected function createAMeeting($data, $accessToken)
