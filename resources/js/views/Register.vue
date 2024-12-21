@@ -410,8 +410,24 @@
         </div>
       </div>
 
+      <!-- Step 6: Seeking (Clients Only) -->
+      <div v-if="currentStep === 6 && !form.ismatchmaker">
+        <h3 class="font-semibold text-lg mb-4">Seeking</h3>
+        <div class="mb-4">
+          <label class="block text-gray-700">
+            Summarize what you are seeking in a match <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            v-model="form.seeking"
+            placeholder="Please explain"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          ></textarea>
+          <p v-if="errors.seeking" class="text-red-500 text-xs italic">{{ errors.seeking }}</p>
+        </div>
+      </div>
       <!-- Step 4: Terms and Privacy (Both Matchmaker and Client) -->
-      <div v-if="(currentStep === 4 && form.ismatchmaker) || (currentStep === 6 && !form.ismatchmaker)">
+      <div v-if="(currentStep === 4 && form.ismatchmaker) || (currentStep === 7 && !form.ismatchmaker)">
         <h3 class="font-semibold text-lg mb-4">Terms and Conditions</h3>
         <div class="space-y-4 flex items-start">
           <label class="text-gray-500 text-sm mb-2 flex items-center">
@@ -509,7 +525,7 @@ export default {
   data() {
     return {
       currentStep: 1,
-      steps: [1, 2, 3, 4, 5, 6],
+      steps: [1, 2, 3, 4, 5, 6, 7],
       form: {
         name: "",
         username: "",
@@ -542,6 +558,7 @@ export default {
         ismatchmaker: false,   // Initialized as boolean
         yearsexperience: "",
         bio: "",
+        seeking: "", //New field for seeking 
       },
       errors: {},
       countries: countries, // Use the imported countries array
@@ -792,8 +809,15 @@ export default {
             }
           }
           break;
-
-        case 6:
+          case 6: // New case for Seeking
+            if (!this.form.ismatchmaker) {
+            if (!this.form.seeking) {
+            this.errors.seeking = 'Please specify what you are finding in your match';
+            hasError = true;
+          }
+        }
+        break;
+        case 7:
           if (!this.form.ismatchmaker) {
             // Client Registration Step 6: Terms and Privacy
             if (!this.form.privacypolicy) {
@@ -806,7 +830,7 @@ export default {
             }
           }
           break;
-
+        
         default:
           break;
       }
@@ -914,6 +938,7 @@ export default {
         formData.append('hobbies', this.form.hobbies);
         formData.append('englishLevel', this.form.englishLevel);
         formData.append('languages', this.form.languages);
+        formData.append('seeking', this.form.seeking); // Add this line
       }
 
       // Append matchmaker specific fields
@@ -972,7 +997,8 @@ export default {
           sports: 'Sports',
           hobbies: 'Hobbies',
           englishLevel: 'English Level',
-          languages: 'Languages'
+          languages: 'Languages',
+          seeking: 'Seeking',
         };
 
         for (const [field, label] of Object.entries(requiredFields)) {

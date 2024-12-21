@@ -344,14 +344,14 @@ onMounted(async () => {
   top: 50%; 
   left: 50%; 
   transform: translate(-50%, -50%); 
-  color: #ff6f61; 
+  color: #2a3f7b; 
   font-size: 4.2rem; 
   font-weight: 900; 
   font-family: 'Cursive', 'Arial', sans-serif; 
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); 
   letter-spacing: 2px; 
   padding: 10px; 
-  border: 5px double #ff6f61; 
+  border: 5px double #F24570; 
   background: rgba(255, 255, 255, 0.2); 
   border-radius: 15px; 
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4); 
@@ -362,7 +362,7 @@ onMounted(async () => {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #F24570;
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: bold;

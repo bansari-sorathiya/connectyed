@@ -40,6 +40,7 @@ class Profile extends Model
         'profile_image2',
         'yearsexperience',
         'name', 
+        'seeking',
 
     ];
 

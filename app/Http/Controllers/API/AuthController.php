@@ -115,6 +115,7 @@ class AuthController extends Controller
                     'hobbies' => 'required|string',
                     'englishLevel' => 'required|string|max:50',
                     'languages' => 'required|string',
+                    'seeking' => 'required',
                 ]);
 
                 if ($clientValidator->fails()) {
@@ -144,6 +145,7 @@ class AuthController extends Controller
                     'hobbies' => $request->hobbies,
                     'english' => $request->englishLevel,
                     'languages' => $request->languages,
+                    'seeking' => $request->seeking,
                 ]);
             }
 

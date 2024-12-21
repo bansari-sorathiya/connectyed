@@ -179,15 +179,15 @@ export default {
 data() {
   return {
     products: [
-      {
-        id: 'matchmaker_intro',
-        name: 'Matchmaker Intro',
-        description: '1 on 1 Connectyed Team Call',
-        originalPrice: 5000,
-        discountedPrice: 2500,
-        stripePriceId: 'price_1Q6dwmFZef913bMWLjDn3QTZ',
-        rank: 0
-      },
+      // {
+      //   id: 'matchmaker_intro',
+      //   name: 'Matchmaker Intro',
+      //   description: '1 on 1 Connectyed Team Call',
+      //   originalPrice: 5000,
+      //   discountedPrice: 2500,
+      //   stripePriceId: 'price_1Q6dwmFZef913bMWLjDn3QTZ',
+      //   rank: 0
+      // },
       {
         id: 'silver_package',
         name: 'Silver Package',
