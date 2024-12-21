@@ -127,6 +127,10 @@
                     <th scope="col">English level</th>
                     <td>{{$client->profile->english_level}}</td>
                 </tr>
+                <tr>
+                    <th scope="col">Seeking</th>
+                    <td>{{$client->profile->seeking}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
