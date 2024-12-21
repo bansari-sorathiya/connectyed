@@ -46,7 +46,7 @@ const AdminDashboard = () => import('@/views/Admin/Dashboard.vue')
 const AdminOverview = () => import('@/views/Admin/Overview.vue')
 const AdminMatchmakers = () => import('@/views/Admin/Matchmakers.vue')
 const AdminClients = () => import('@/views/Admin/Clients.vue')
-
+const BlindRequests = () => import('@/views/Admin/BlindRequest.vue')
 const routes = [
     {
         path: '/email/verify',
@@ -232,6 +232,10 @@ const routes = [
                     {
                         path: 'clients',
                         component: AdminClients
+                    },
+                    {
+                        path: 'blind_requests',
+                        component:BlindRequests
                     }
                 ]
             }

@@ -25,6 +25,7 @@ use Google_Service_Calendar_EventDateTime;
 use Illuminate\Support\Facades\Notification;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use App\Notifications\MeetingPaymentNotification;
+use App\Notifications\FreeDateRequestNotification;
 use App\Notifications\MeetingScheduledNotification;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -281,7 +282,24 @@ class GoogleMeetController extends Controller
                         'message' => 'Error creating payment link'.$e->getMessage(),
                     ], 500);
                 }
-            } else {
+            } 
+            // ========= TEMPORARY DUE TO FREE ONE ON ONE DATE ===================
+            else if($authUser->role == 'admin') {
+                // notify the clients
+                $clients = User::whereIn('id', $request->client_ids)->get();
+                foreach ($clients as $client) {
+                    $clientMeetingData = array_merge($meetingData, [
+                        'client_id' => $client->id,
+                        'status' => 'confirmed',
+                    ]);
+
+                    // Save meeting for each client and notify them
+                    $newMeeting = Meeting::create($clientMeetingData);
+                    Notification::send($client, new MeetingScheduledNotification($newMeeting));
+                }
+                return true;
+            }
+            else {
                 // For matchmaker: create a meeting entry for each client
                 $clients = User::whereIn('id', $request->client_ids)->get();
                 foreach ($clients as $client) {
@@ -570,7 +588,7 @@ class GoogleMeetController extends Controller
     //         ],
     //     ], 200);
     // }
-
+    
     public function getUpcomingMeetings(Request $request)
     {
         $user = Auth::user();
@@ -655,5 +673,62 @@ class GoogleMeetController extends Controller
                 'data' => $matchmakerMeetings,
             ], 200);
         }        
+    }
+
+    // SEND REQUEST TO ADMIN AND NOTIFY BOTH FOR 1 ON 1 BLIND DATE
+    public function freeBlindDateRequest() {
+        // we need only authenticated user's id
+        $client = Auth::user();
+        if(!$client) {
+            return response()->json(['message' => "Unauthorized user!"]);
+        }
+
+        $requestData = [
+            'user_id' => $client->id,
+            'request_time' => now(),
+        ];
+    
+        // store request
+        $existingRequests = Cache::get('blind_date_requests', []);
+        $existingRequests[] = $requestData; // Add new request
+        Cache::put('blind_date_requests', $existingRequests, now()->addDays(15));
+
+        $client->load('profile'); // Eager load the profile relationship
+        $admin = User::where('role','admin')->first();
+        $admin->notify(new FreeDateRequestNotification($client));
+        return response()->json(['message' => "Request Sent Successfully"]);    
+        dd($client,$admin);
+    }
+
+    //get clients who has requested for blind date
+    public function getBlindDateRequestsForAdmin() {
+        $requestData = collect(Cache::get('blind_date_requests'));
+        $clients = [];
+        foreach($requestData as $key => $request) {
+            $client = User::where('id',$request['user_id'])->get();
+            if ($client) {
+                $clients[] = $client; // Add client to the array
+            }
+        }
+        return response()->json(['data' => collect($clients)]);
+    }
+
+    //schedule free 1 on 1 blind date meeting
+    public function scheduleFreeBlindMeeting(Request $request){
+        try {
+            $data = [
+                'client_ids' => $request->client_ids,
+                'matchmaker_id' => Auth::user()->id, //will use admin's id
+                'start_time' => $request->start_time,
+                'duration' => $request->duration
+            ];
+            $response = $this->createMeeting(new Request($data));
+            if($response === true) {
+                return response()->json(['status' => true, 'message' => 'Meeting Scheduled Successfully.']);
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['status' => 500 , 'message' => "Something went wrong" . $e->getMessage()]);
+        }
     }
 }

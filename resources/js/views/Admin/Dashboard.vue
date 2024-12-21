@@ -30,6 +30,13 @@
             <router-link to="/admin/clients" class="block px-4 py-3 text-white hover:text-[#213366] hover:bg-[#e7dccf] transition-colors duration-200">
               <i class="fas fa-users mr-2"></i> Clients
             </router-link>
+          </li>     
+
+          <!-- Blind Requests -->
+          <li class="mb-4">
+            <router-link to="/admin/blind_requests" class="block px-4 py-3 text-white hover:text-[#213366] hover:bg-[#e7dccf] transition-colors duration-200">
+              <i class="fas fa-users mr-2"></i> Free Bliand Date Request
+            </router-link>
           </li>          
         </ul>
       </nav>

@@ -37,6 +37,11 @@ Route::get('/public/matchmaker/clients/{matchmakerId}', [ClientController::class
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('throttle:5,1'); // 5 attempts per minute
 Route::post('password/reset', [ForgotPasswordController::class, 'reset'])->middleware('throttle:5,1');
 
+// FREE 1 ON 1 BLIND DATE ROUTE
+Route::post('/free-blind-date-request', [GoogleMeetController::class, 'freeBlindDateRequest']);
+Route::get('/get-blind-request', [GoogleMeetController::class, 'getBlindDateRequestsForAdmin'])->middleware('auth:api');
+Route::post('/google/create-free-blind-meeting',[GoogleMeetController::class, 'scheduleFreeBlindMeeting'])->middleware('auth:api');
+
 // Google OAuth
 
 // Meetings

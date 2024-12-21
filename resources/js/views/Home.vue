@@ -77,7 +77,8 @@
   <!-- ================> Banner section end here <================== -->
 
   <!-- Matchmakers Carousel section start here -->
-  <div class="matchmakers padding-bottom padding-top bg_img">
+   <!-- TEMPORARY COMMENT IT FOR FREE ! ON ! BLIND MEETING -->
+  <!-- <div class="matchmakers padding-bottom padding-top bg_img">
     <div class="container">
       <div class="section__header style-2 text-center">
         <h2>Our Matchmakers</h2>
@@ -118,8 +119,13 @@
         </Swiper>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Matchmakers Carousel section end here -->
+
+  <div class="promo-banner align-center mt-5 mb-1">
+    <div class="promo-text">Free 1 On 1 Blind Date Awaits!</div>
+    <h4 class="registration-link">Send your request today to get a chance for <span style="color:#4b08b9;"><strong>FREE</strong></span> 1 on 1 Blind Date. <a href="/register">Sign Up Now!</a> </h4>
+  </div>
 
   <!-- Story section start here -->
   <!--<div class="story bg_img padding-top padding-bottom">-->
@@ -145,7 +151,7 @@
   <!--    </div>-->
   <!--  </div>-->
   <!--</div>-->
-  <div class="dating-tips-section padding-top padding-bottom">
+  <div class="dating-tips-section padding-top padding-bottom" style="padding-top: 150px;">
     <div class="container">
       <div class="section__header text-center">
         <h2>Dating Tips</h2>
@@ -321,6 +327,106 @@ onMounted(async () => {
   --connectyed-button-dark: #333333;
   --connectyed-button-hover-light: #e0e0e0;
   --connectyed-button-hover-dark: #333333; /* Changed from #ffffff for better contrast */
+}
+.promo-banner {
+  margin-top:150px;
+  /* width: 1510px; */
+  height: 350px;
+  background-image: url('/public/upload/images/banner_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; 
+  text-align: center; 
+}
+
+.promo-text {
+  position: absolute; /* Position text over the image */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: #ff6f61; 
+  font-size: 4.2rem; 
+  font-weight: 900; 
+  font-family: 'Cursive', 'Arial', sans-serif; 
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
+  letter-spacing: 2px; 
+  padding: 10px; 
+  border: 5px double #ff6f61; 
+  background: rgba(255, 255, 255, 0.2); 
+  border-radius: 15px; 
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4); 
+}
+.registration-link {
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.registration-link a:hover {
+  background-color: #fff;
+  padding: 5px;
+}
+@media (max-width: 768px) {
+  .promo-banner {
+    height: auto; 
+    padding: 20px; 
+  }
+
+  .promo-text {
+    font-size: 3rem; 
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); 
+  }
+
+  .registration-link {
+    font-size: 1.2rem; 
+    padding: 8px 16px; 
+    top: 80%; 
+  }
+}
+@media (max-width:600px) {
+  /* small screens  */
+  .promo-text {
+    font-size: 1.9rem; 
+  }
+  .promo-banner{
+    height:210px;
+  }
+  .registration-link {
+    font-size: 1rem; 
+    padding: 6px 12px; 
+    top: 110%; 
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  /* Styles for medium screens */
+  .promo-text{
+    font-size: 2.9rem; 
+  }
+}
+@media(min-width:608px) and (max-width:769px) {
+  .promo-text{
+    font-size:1.9rem;
+  }
+  .promo-banner{
+    height: 200px;
+  }
+  .registration-link {
+    font-size: 1rem; 
+    padding: 6px 12px; 
+    top: 99%; 
+  }
 }
 
 .hero-container {

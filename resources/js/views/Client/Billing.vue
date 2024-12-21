@@ -77,6 +77,17 @@
         :key="product.id" 
         class="bg-white p-6 rounded-lg shadow relative"
       >
+
+      <!-- Badge for Silver Package -->
+      <div
+  v-if="product.id === 'silver_package'"
+  class="absolute top-0 left-0 bg-yellow-500 text-blue-700 font-bold px-3  py-1 transform -rotate-45 shadow-md z-10 mt-6"
+  style="transform-origin: top left;margin-top:2.9rem;margin-left:-2.6rem;"
+>
+  TRY IT NOW!
+</div>
+
+
         <div v-if="isCurrentPackage(product.id)" 
              class="absolute top-0 right-0 bg-blue-500 text-white px-3 py-1 rounded-bl">
           Current
@@ -85,16 +96,18 @@
         <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
         <p class="text-gray-700 mb-4">{{ product.description }}</p>
         <p class="text-xl font-bold mb-2">
-          <span class="line-through text-gray-500">
+          <span v-if="product.id !== 'silver_package'" class="line-through text-gray-500">
             ${{ (product.originalPrice / 100).toFixed(2) }}
           </span>
-          <span class="text-green-600">
+          <span v-if="product.id !== 'silver_package'" class="text-green-600">
             ${{ (product.discountedPrice / 100).toFixed(2) }}
+          </span>
+          <span v-if="product.id === 'silver_package'" class="text-green-600">
+            FREE
           </span>
         </p>
         <button
-          @click="openDiscountModal(product)"
-          :disabled="!canPurchasePackage(product.id) || processing"
+        @click="product.id === 'silver_package' ? (selectedProduct = product, handleSilverPackageRequest()) : openDiscountModal(product)" :disabled="!canPurchasePackage(product.id) || processing"
           :class="[
             'w-full py-2 px-4 rounded transition duration-200',
             isCurrentPackage(product.id) 
@@ -270,10 +283,40 @@ data() {
       if (this.isCurrentPackage(package_id)) {
         return 'Current Package';
       }
+      if (package_id === 'silver_package') {
+        return 'Send Your Request'; // Change for Silver Package
+      }
       if (!this.canPurchasePackage(package_id)) {
         return 'Lower Tier';
       }
       return this.hasPackage ? 'Upgrade' : 'Purchase';
+    },
+    async handleSilverPackageRequest() {
+      this.processing = true;
+      try {
+        const response = await axios.post('/api/free-blind-date-request', {}, {
+          headers: {
+            Authorization: `Bearer ${this.authorization.token}`, // Include authorization token if needed
+          },
+        });
+
+        // Handle success response
+        if (response.data.message) {
+          alert('Your request for the Silver Package has been successfully sent!');
+        } else {
+          alert(response.data.message || 'Failed to send your request. Please try again.');
+        }
+        //handle succes here
+      } catch (error) {
+        console.error('Error Sending Request:', error);
+        if (error.response?.data?.message) {
+          alert(`Error: ${error.response.data.message}`);
+        } else {
+          alert('An unexpected error occurred. Please try again later.');
+        }
+      } finally {
+        this.processing = false;
+      }
     },
     buttonLabel(product) {
       return `${this.hasPackage ? 'Upgrade to' : 'Purchase'} ${product.name}`;
