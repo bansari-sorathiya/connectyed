@@ -271,27 +271,27 @@
             min="1"
             max="120"
           />
-          <select-option
+          <!-- <select-option
             label="Gender"
             :options="genders"
             v-model="form.gender"
             :required="true"
             :error="errors.gender"
-          />
-          <input-text
+          /> -->
+          <!-- <input-text
             label="Hair Color"
             v-model="form.hairColor"
             :required="true"
             :error="errors.hairColor"
             maxlength="50"
-          />
-          <select-option
+          /> -->
+          <!-- <select-option
             label="Body Type"
             :options="bodyTypes"
             v-model="form.bodyType"
             :required="true"
             :error="errors.bodyType"
-          />
+          /> -->
           <div class="flex gap-4">
             <input-text
               label="Height (Feet)"
@@ -321,27 +321,27 @@
       <div v-if="currentStep === 4 && !form.ismatchmaker">
         <h3 class="font-semibold text-lg mb-4">Lifestyle Information</h3>
         <div class="grid grid-cols-1 md:grid-cols-1 gap-1">
-          <select-option
+          <!-- <select-option
             label="Marital Status"
             :options="maritalStatuses"
             v-model="form.maritalStatus"
             :required="true"
             :error="errors.maritalStatus"
-          />
-          <select-option
+          /> -->
+          <!-- <select-option
             label="Children"
             :options="childrenOptions"
             v-model="form.children"
             :required="true"
             :error="errors.children"
-          />
-          <select-option
+          /> -->
+          <!-- <select-option
             label="Religion"
             :options="religions"
             v-model="form.religion"
             :required="true"
             :error="errors.religion"
-          />
+          /> -->
           <select-option
             label="Smoker"
             :options="yesNoOptions"
@@ -425,6 +425,86 @@
           ></textarea>
           <p v-if="errors.seeking" class="text-red-500 text-xs italic">{{ errors.seeking }}</p>
         </div>
+
+        <div class="flex gap-4">
+          <input-text
+            label="Min. Age"
+            v-model="form.min_age"
+            type="number"
+            :required="true"
+            :error="errors.age"
+            maxlength="3"
+            min="1"
+            max="120"
+          />
+          <input-text
+            label="Max. Age"
+            v-model="form.max_age"
+            type="number"
+            :required="true"
+            :error="errors.age"
+            maxlength="3"
+            min="1"
+            max="120"
+          />
+        </div>
+
+        <div class="flex gap-5">
+          <select-option
+            label="Current Kid(s)"
+            :options="childrenOptions"
+            v-model="form.children"
+            :required="true"
+            :error="errors.children"
+          />
+          <select-option
+            label="Desired Kid(s)"
+            :options="childrenOptions"
+            v-model="form.desired_children"
+            :required="true"
+            :error="errors.desired_children"
+          />
+        </div>
+        <input-text
+            label="Hair Color"
+            v-model="form.hairColor"
+            :required="true"
+            :error="errors.hairColor"
+            maxlength="50"
+          />
+          <div class="flex gap-5">
+            <select-option
+              label="Gender&nbsp;"
+              :options="genders"
+              v-model="form.gender"
+              :required="true"
+              :error="errors.gender"
+            />
+            <select-option
+              label="Body Type&nbsp;"
+              :options="bodyTypes"
+              v-model="form.bodyType"
+              :required="true"
+              :error="errors.bodyType"
+            />
+          </div>
+          <div class="flex gap-5">
+            <select-option
+              label="Religion"
+              :options="religions"
+              v-model="form.religion"
+              :required="true"
+              :error="errors.religion"
+            />
+  
+            <select-option
+              label="Marital Status"
+              :options="maritalStatuses"
+              v-model="form.maritalStatus"
+              :required="true"
+              :error="errors.maritalStatus"
+            />
+          </div>
       </div>
       <!-- Step 4: Terms and Privacy (Both Matchmaker and Client) -->
       <div v-if="(currentStep === 4 && form.ismatchmaker) || (currentStep === 7 && !form.ismatchmaker)">
@@ -559,6 +639,9 @@ export default {
         yearsexperience: "",
         bio: "",
         seeking: "", //New field for seeking 
+        min_age: "",
+        max_age: "",
+        desired_children:"",
       },
       errors: {},
       countries: countries, // Use the imported countries array
@@ -715,18 +798,18 @@ export default {
               hasError = true;
             }
 
-            if (!this.form.gender) {
-              this.errors.gender = 'Gender is required';
-              hasError = true;
-            }
-            if (!this.form.hairColor) {
-              this.errors.hairColor = 'Hair Color is required';
-              hasError = true;
-            }
-            if (!this.form.bodyType) {
-              this.errors.bodyType = 'Body Type is required';
-              hasError = true;
-            }
+            // if (!this.form.gender) {
+            //   this.errors.gender = 'Gender is required';
+            //   hasError = true;
+            // }
+            // if (!this.form.hairColor) {
+            //   this.errors.hairColor = 'Hair Color is required';
+            //   hasError = true;
+            // }
+            // if (!this.form.bodyType) {
+            //   this.errors.bodyType = 'Body Type is required';
+            //   hasError = true;
+            // }
             if (!this.form.heightFeet) {
               this.errors.heightFeet = 'Height in Feet is required';
               hasError = true;
@@ -757,18 +840,18 @@ export default {
             }
           } else {
             // Client Registration Step 4: Lifestyle Information
-            if (!this.form.maritalStatus) {
-              this.errors.maritalStatus = 'Marital Status is required';
-              hasError = true;
-            }
-            if (this.form.children === '' || this.form.children === null) {
-              this.errors.children = 'Children is required';
-              hasError = true;
-            }
-            if (!this.form.religion) {
-              this.errors.religion = 'Religion is required';
-              hasError = true;
-            }
+            // if (!this.form.maritalStatus) {
+            //   this.errors.maritalStatus = 'Marital Status is required';
+            //   hasError = true;
+            // }
+            // if (this.form.children === '' || this.form.children === null) {
+            //   this.errors.children = 'Children is required';
+            //   hasError = true;
+            // }
+            // if (!this.form.religion) {
+            //   this.errors.religion = 'Religion is required';
+            //   hasError = true;
+            // }
             if (this.form.smoker === false && this.form.smoker === '') { // Adjusted for boolean
               this.errors.smoker = 'Smoker status is required';
               hasError = true;
@@ -812,9 +895,52 @@ export default {
           case 6: // New case for Seeking
             if (!this.form.ismatchmaker) {
             if (!this.form.seeking) {
-            this.errors.seeking = 'Please specify what you are finding in your match';
-            hasError = true;
-          }
+              this.errors.seeking = 'Please specify what you are finding in your match';
+              hasError = true;
+            }
+            if(!this.form.min_age) {
+              this.errors.min_age = 'Please Enter Minimum Age';
+              hasError = true;
+            } else if (isNaN(this.form.min_age) || this.form.min_age < 18 || this.form.min_age > 100) {
+              this.errors.age = 'Please enter a valid minimum age between 18 and 100';
+              hasError = true;
+            }
+            if(!this.form.max_age) {
+              this.errors.max_age = 'Please Enter Maximum Age';
+              hasError = true;
+            } else if (isNaN(this.form.max_age) || this.form.max_age < 18 || this.form.max_age > 100) {
+              this.errors.age = 'Please enter a valid maximum age between 18 and 100';
+              hasError = true;
+            }
+            if (this.form.children === '' || this.form.children === null) {
+              this.errors.children = 'Current Children is required';
+              hasError = true;
+            }
+            if (this.form.desired_children === '' || this.form.desired_children === null) {
+              this.errors.desired_children = 'Desired Children is required';
+              hasError = true;
+            }
+            if (!this.form.hairColor) {
+              this.errors.hairColor = 'Hair Color is required';
+              hasError = true;
+            }
+            if (!this.form.gender) {
+              this.errors.gender = 'Gender is required';
+              hasError = true;
+            }
+            if (!this.form.bodyType) {
+              this.errors.bodyType = 'Body Type is required';
+              hasError = true;
+            }
+            if (!this.form.maritalStatus) {
+              this.errors.maritalStatus = 'Marital Status is required';
+              hasError = true;
+            }
+            if (!this.form.religion) {
+              this.errors.religion = 'Religion is required';
+              hasError = true;
+            }
+            
         }
         break;
         case 7:
@@ -939,6 +1065,9 @@ export default {
         formData.append('englishLevel', this.form.englishLevel);
         formData.append('languages', this.form.languages);
         formData.append('seeking', this.form.seeking); // Add this line
+        formData.append('min_age', this.form.min_age); 
+        formData.append('max_age', this.form.max_age); 
+        formData.append('desired_children', this.form.desired_children); 
       }
 
       // Append matchmaker specific fields

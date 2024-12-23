@@ -84,8 +84,12 @@
                     <td>{{$client->profile->maritalstatus}}</td>
                 </tr>
                 <tr>
-                    <th scope="col">Children</th>
+                    <th scope="col">Current Children</th>
                     <td>{{$client->profile->children}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Desired Children</th>
+                    <td>{{$client->profile->desired_children}}</td>
                 </tr>
                 <tr>
                     <th scope="col">Religion</th>
@@ -130,6 +134,14 @@
                 <tr>
                     <th scope="col">Seeking</th>
                     <td>{{$client->profile->seeking}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Minimun Age</th>
+                    <td>{{$client->profile->min_age}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Maximum Age</th>
+                    <td>{{$client->profile->max_age}}</td>
                 </tr>
             </tbody>
         </table>

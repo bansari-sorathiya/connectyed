@@ -122,11 +122,33 @@
   </div> -->
   <!-- Matchmakers Carousel section end here -->
 
-  <div class="promo-banner align-center mt-5 mb-1">
+  <!-- <div class="promo-banner align-center mt-5 mb-1">
     <div class="promo-text">Free 1 On 1 Blind Date Awaits!</div>
     <h4 class="registration-link">Send your request today to get a chance for <span style="color:#4b08b9;"><strong>FREE</strong></span> 1 on 1 Blind Date. <a href="/register">Sign Up Now!</a> </h4>
-  </div>
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-3 banner_sign_up">
+      <div class="text">
+        <h3>Do you<br> Dare to discover? </h3>
+        <center><a href="/register">&nbsp;Sign Up for free&nbsp;</a></center>
+      </div>
+    </div>
+    <div class="col-9">
+      <img class="banner_img" src="../../../public/upload/images/banner.png" alt="">
+    </div>
+  </div> -->
 
+  <div class="row">
+  <div class="col-lg-3 col-sm-12 banner_sign_up">
+    <div class="text">
+      <h3>Do you<br> Dare to discover? </h3>
+      <center><a href="/register">&nbsp;Sign Up for free&nbsp;</a></center>
+    </div>
+  </div>
+  <div class="col-lg-9 col-sm-12">
+    <img class="banner_img" src="../../../public/upload/images/banner.png" alt="">
+  </div>
+</div>
   <!-- Story section start here -->
   <!--<div class="story bg_img padding-top padding-bottom">-->
   <!--  <div class="container">-->
@@ -328,6 +350,116 @@ onMounted(async () => {
   --connectyed-button-hover-light: #e0e0e0;
   --connectyed-button-hover-dark: #333333; /* Changed from #ffffff for better contrast */
 }
+
+/* BANNER CSS START */
+.banner_img{
+  background-size: cover;
+  margin-top:20px;
+}
+.banner_sign_up{
+  margin-top: 20px;
+  background-color:   #f4d3a9c9;
+}
+.text h3{
+  font-size:3rem;
+  /* padding:2rem; */
+  text-shadow:1px 1px 4px #F24570;
+  color:#213366;
+  padding-top:10rem;
+  font-weight: bolder;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.text a{
+  background-color: #F24570;
+  color:#fff;
+  font-size:1.3rem;
+  padding:10px;
+  border-radius: 25px;
+  margin-top:15px;
+}
+.text a:hover{
+  color: #F24570;
+  background-color: #fff;
+  padding:15px;
+  font-weight: bold;
+}
+.row {
+  display: flex; 
+  flex-direction: row; 
+}
+
+
+@media (min-width:770px) and (max-width: 992px) {
+  .banner_sign_up {
+    order: 1; 
+  }
+
+  .banner_img {
+    order: 2; 
+  }
+}
+@media (min-width:999px) and (max-width: 1470px) {
+  .text h3{
+    padding-top: 8rem;
+  }
+}
+@media (min-width:992px) and (max-width: 1242px) {
+  .text h3{
+    font-size: 2.5rem;
+    padding-top:5rem;
+  }
+  .text a {
+    font-size:1.1rem;
+  }
+}
+@media (min-width:770px) and (max-width: 986px) {
+  .text h3{
+    padding-top:3rem;
+  }
+  .text a{
+    margin-bottom:30px;
+  }
+}
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column; 
+  }
+
+  .banner_sign_up {
+    order: 1; 
+  }
+
+  .banner_img {
+    order: 2; 
+  }
+}
+@media (max-width: 768px) {
+    .text h3 {
+        font-size: 2rem; 
+        padding-top:30px;
+    }
+    
+    .text a {
+        padding: 8px 16px; 
+        margin-bottom:20px;
+    }
+}
+@media (max-width: 480px) {
+    .text h3 {
+        font-size: 1rem; 
+        padding-top:10px;
+        order:2;
+    }
+    .banner_sign_up{
+      margin-top:3px;
+    }
+    .text a {
+        padding: 6px 12px; 
+    }
+  }
+
+  /* BANNER CSS END */
 .promo-banner {
   margin-top:150px;
   /* width: 1510px; */

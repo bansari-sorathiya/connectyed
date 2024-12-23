@@ -146,6 +146,9 @@ class AuthController extends Controller
                     'english' => $request->englishLevel,
                     'languages' => $request->languages,
                     'seeking' => $request->seeking,
+                    'min_age' => $request->min_age,
+                    'max_age' => $request->max_age,
+                    'desired_children' => $request->desired_children,
                 ]);
             }
 
