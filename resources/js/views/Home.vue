@@ -141,7 +141,7 @@
   <div class="row">
   <div class="col-lg-3 col-sm-12 banner_sign_up">
     <div class="text">
-      <h3>Do you<br> Dare to discover? </h3>
+      <h3>Get Started Today</h3>
       <center><a href="/register">&nbsp;Sign Up for free&nbsp;</a></center>
     </div>
   </div>
