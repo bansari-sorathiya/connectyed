@@ -138,14 +138,14 @@
     </div>
   </div> -->
 
-  <div class="row overflow-hidden">
+  <div class="row bannerRow">
   <div class="col-lg-3 col-sm-12 banner_sign_up">
     <div class="text">
       <h3>Get Started Today</h3>
       <center><a href="/register">&nbsp;Sign Up for free&nbsp;</a></center>
     </div>
   </div>
-  <div class="col-lg-9 col-sm-12">
+  <div class="col-lg-9 col-sm-12 banner_img_div">
     <img class="banner_img" src="../../../public/upload/images/banner.jpg" alt="">
   </div>
 </div>
@@ -350,12 +350,12 @@ onMounted(async () => {
   --connectyed-button-hover-light: #e0e0e0;
   --connectyed-button-hover-dark: #333333; /* Changed from #ffffff for better contrast */
 }
-.row {
+.bannerRow {
   display: flex; 
   flex-wrap: wrap; 
   margin: 0; 
 }
-.col-lg-3, .col-lg-9 {
+.banner_img_div, .banner_sign_up {
   padding: 0; /* Remove padding to prevent overflow */
 }
 
