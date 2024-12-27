@@ -138,7 +138,7 @@
     </div>
   </div> -->
 
-  <div class="row">
+  <div class="row overflow-hidden">
   <div class="col-lg-3 col-sm-12 banner_sign_up">
     <div class="text">
       <h3>Get Started Today</h3>
@@ -146,7 +146,7 @@
     </div>
   </div>
   <div class="col-lg-9 col-sm-12">
-    <img class="banner_img" src="../../../public/upload/images/banner.png" alt="">
+    <img class="banner_img" src="../../../public/upload/images/banner.jpg" alt="">
   </div>
 </div>
   <!-- Story section start here -->
@@ -350,7 +350,19 @@ onMounted(async () => {
   --connectyed-button-hover-light: #e0e0e0;
   --connectyed-button-hover-dark: #333333; /* Changed from #ffffff for better contrast */
 }
+.row {
+  display: flex; 
+  flex-wrap: wrap; 
+  margin: 0; 
+}
+.col-lg-3, .col-lg-9 {
+  padding: 0; /* Remove padding to prevent overflow */
+}
 
+.banner_img {
+  width: 100%; 
+  height: auto;
+}
 /* BANNER CSS START */
 .banner_img{
   background-size: cover;
@@ -447,7 +459,7 @@ onMounted(async () => {
 }
 @media (max-width: 480px) {
     .text h3 {
-        font-size: 1rem; 
+        /*font-size: 1rem;*/   /* THE FONT IS TO SMALL AT SMALL SCREEN */
         padding-top:10px;
         order:2;
     }
