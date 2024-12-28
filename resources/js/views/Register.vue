@@ -271,27 +271,27 @@
             min="1"
             max="120"
           />
-          <!-- <select-option
+          <select-option
             label="Gender"
             :options="genders"
             v-model="form.gender"
             :required="true"
             :error="errors.gender"
-          /> -->
-          <!-- <input-text
+          />
+          <input-text
             label="Hair Color"
             v-model="form.hairColor"
             :required="true"
             :error="errors.hairColor"
             maxlength="50"
-          /> -->
-          <!-- <select-option
+          />
+          <select-option
             label="Body Type"
             :options="bodyTypes"
             v-model="form.bodyType"
             :required="true"
             :error="errors.bodyType"
-          /> -->
+          />
           <div class="flex gap-4">
             <input-text
               label="Height (Feet)"
@@ -321,27 +321,27 @@
       <div v-if="currentStep === 4 && !form.ismatchmaker">
         <h3 class="font-semibold text-lg mb-4">Lifestyle Information</h3>
         <div class="grid grid-cols-1 md:grid-cols-1 gap-1">
-          <!-- <select-option
+          <select-option
             label="Marital Status"
             :options="maritalStatuses"
             v-model="form.maritalStatus"
             :required="true"
             :error="errors.maritalStatus"
-          /> -->
-          <!-- <select-option
+          />
+          <select-option
             label="Children"
             :options="childrenOptions"
             v-model="form.children"
             :required="true"
             :error="errors.children"
-          /> -->
-          <!-- <select-option
+          />
+          <select-option
             label="Religion"
             :options="religions"
             v-model="form.religion"
             :required="true"
             :error="errors.religion"
-          /> -->
+          />
           <select-option
             label="Smoker"
             :options="yesNoOptions"
@@ -368,6 +368,13 @@
             v-model="form.education"
             :required="true"
             :error="errors.education"
+            maxlength="100"
+          />
+          <input-text
+            label="Occupation"
+            v-model="form.occupation"
+            :required="true"
+            :error="errors.occupation"
             maxlength="100"
           />
           <input-text
@@ -413,7 +420,7 @@
       <!-- Step 6: Seeking (Clients Only) -->
       <div v-if="currentStep === 6 && !form.ismatchmaker">
         <h3 class="font-semibold text-lg mb-4">Seeking</h3>
-        <div class="mb-4">
+         <div class="mb-4">
           <label class="block text-gray-700">
             Summarize what you are seeking in a match <span class="text-red-500">*</span>
           </label>
@@ -449,6 +456,13 @@
           />
         </div>
 
+        <input-text
+            label="Location"
+            v-model="form.seeking_location"
+            :required="true"
+            :error="errors.currentLocation"
+            maxlength="100"
+          />
         <div class="flex gap-5">
           <select-option
             label="Current Kid(s)"
@@ -467,44 +481,71 @@
         </div>
         <input-text
             label="Hair Color"
-            v-model="form.hairColor"
+            v-model="form.seeking_hair_color"
             :required="true"
             :error="errors.hairColor"
             maxlength="50"
           />
-          <div class="flex gap-5">
+          <div class="flex gap-4">
+            <div class="flex-1">
             <select-option
               label="Gender&nbsp;"
               :options="genders"
-              v-model="form.gender"
+              v-model="form.seeking_gender"
               :required="true"
               :error="errors.gender"
             />
+            </div>
+            <div class="flex-1">
             <select-option
               label="Body Type&nbsp;"
               :options="bodyTypes"
-              v-model="form.bodyType"
+              v-model="form.seeking_body_type"
               :required="true"
               :error="errors.bodyType"
             />
+            </div>
           </div>
           <div class="flex gap-5">
-            <select-option
-              label="Religion"
-              :options="religions"
-              v-model="form.religion"
-              :required="true"
-              :error="errors.religion"
-            />
-  
+            <div class="flex-1">
             <select-option
               label="Marital Status"
               :options="maritalStatuses"
-              v-model="form.maritalStatus"
+              v-model="form.seeking_marital_status"
               :required="true"
               :error="errors.maritalStatus"
             />
+            </div>
+            <div class="flex-1">
+            <select-option
+              label="Religion"
+              :options="religions"
+              v-model="form.seeking_religion"
+              :required="true"
+              :error="errors.religion"
+            />
+            </div>
           </div>
+          <div class="flex gap-5">
+            <div class="flex-1">
+            <select-option
+              label="Smoker"
+              :options="yesNoOptions"
+              v-model="form.seeking_smoker"
+              :required="true"
+              :error="errors.smoker"
+            />
+            </div>
+            <div class="flex-1">
+            <select-option
+              label="Drinker"
+              :options="drinkerOptions"
+              v-model="form.seeking_drinker"
+              :required="true"
+              :error="errors.drinker"
+            />
+            </div>
+            </div>
       </div>
       <!-- Step 4: Terms and Privacy (Both Matchmaker and Client) -->
       <div v-if="(currentStep === 4 && form.ismatchmaker) || (currentStep === 7 && !form.ismatchmaker)">
@@ -628,6 +669,7 @@ export default {
         smoker: false, // Initialized as boolean
         drinker: "",
         education: "",
+        occupation: "",
         jobTitle: "",
         sports: "",
         hobbies: "",
@@ -642,6 +684,14 @@ export default {
         min_age: "",
         max_age: "",
         desired_children:"",
+        seeking_location: "",
+        seeking_hair_color: "",
+        seeking_gender: "",
+        seeking_body_type: "",
+        seeking_marital_status: "",
+        seeking_religion: "",
+        seeking_smoker: "",
+        seeking_drinker: "",
       },
       errors: {},
       countries: countries, // Use the imported countries array
@@ -798,18 +848,18 @@ export default {
               hasError = true;
             }
 
-            // if (!this.form.gender) {
-            //   this.errors.gender = 'Gender is required';
-            //   hasError = true;
-            // }
-            // if (!this.form.hairColor) {
-            //   this.errors.hairColor = 'Hair Color is required';
-            //   hasError = true;
-            // }
-            // if (!this.form.bodyType) {
-            //   this.errors.bodyType = 'Body Type is required';
-            //   hasError = true;
-            // }
+             if (!this.form.gender) {
+               this.errors.gender = 'Gender is required';
+               hasError = true;
+             }
+             if (!this.form.hairColor) {
+               this.errors.hairColor = 'Hair Color is required';
+              hasError = true;
+             }
+             if (!this.form.bodyType) {
+               this.errors.bodyType = 'Body Type is required';
+              hasError = true;
+             }
             if (!this.form.heightFeet) {
               this.errors.heightFeet = 'Height in Feet is required';
               hasError = true;
@@ -839,19 +889,19 @@ export default {
               hasError = true;
             }
           } else {
-            // Client Registration Step 4: Lifestyle Information
-            // if (!this.form.maritalStatus) {
-            //   this.errors.maritalStatus = 'Marital Status is required';
-            //   hasError = true;
-            // }
-            // if (this.form.children === '' || this.form.children === null) {
-            //   this.errors.children = 'Children is required';
-            //   hasError = true;
-            // }
-            // if (!this.form.religion) {
-            //   this.errors.religion = 'Religion is required';
-            //   hasError = true;
-            // }
+             //Client Registration Step 4: Lifestyle Information
+             if (!this.form.maritalStatus) {
+               this.errors.maritalStatus = 'Marital Status is required';
+               hasError = true;
+             }
+             if (this.form.children === '' || this.form.children === null) {
+               this.errors.children = 'Children is required';
+               hasError = true;
+             }
+             if (!this.form.religion) {
+               this.errors.religion = 'Religion is required';
+               hasError = true;
+             }
             if (this.form.smoker === false && this.form.smoker === '') { // Adjusted for boolean
               this.errors.smoker = 'Smoker status is required';
               hasError = true;
@@ -868,6 +918,10 @@ export default {
             // Client Registration Step 5: Professional and Hobbies
             if (!this.form.education) {
               this.errors.education = 'Education is required';
+              hasError = true;
+            }
+            if (!this.form.occupation) {
+              this.errors.occupation = 'Occupation is required';
               hasError = true;
             }
             if (!this.form.jobTitle) {
@@ -892,12 +946,12 @@ export default {
             }
           }
           break;
-          case 6: // New case for Seeking
+        case 6: // New case for Seeking
             if (!this.form.ismatchmaker) {
-            if (!this.form.seeking) {
-              this.errors.seeking = 'Please specify what you are finding in your match';
-              hasError = true;
-            }
+             if (!this.form.seeking) {
+               this.errors.seeking = 'Please summerize what you are seeking in your match';
+               hasError = true;
+             }
             if(!this.form.min_age) {
               this.errors.min_age = 'Please Enter Minimum Age';
               hasError = true;
@@ -920,27 +974,38 @@ export default {
               this.errors.desired_children = 'Desired Children is required';
               hasError = true;
             }
-            if (!this.form.hairColor) {
-              this.errors.hairColor = 'Hair Color is required';
+            if (!this.form.seeking_hair_color) {
+              this.errors.seeking_hair_color = 'Hair Color is required';
               hasError = true;
             }
-            if (!this.form.gender) {
+            if (!this.form.seeking_gender) {
               this.errors.gender = 'Gender is required';
               hasError = true;
             }
-            if (!this.form.bodyType) {
+            if (!this.form.seeking_body_type) {
               this.errors.bodyType = 'Body Type is required';
               hasError = true;
             }
-            if (!this.form.maritalStatus) {
+            if (!this.form.seeking_marital_status) {
               this.errors.maritalStatus = 'Marital Status is required';
               hasError = true;
             }
-            if (!this.form.religion) {
+            if (!this.form.seeking_religion) {
               this.errors.religion = 'Religion is required';
               hasError = true;
             }
-            
+            if (!this.form.seeking_smoker) {
+              this.errors.smoker = 'Smoker is required';
+              hasError = true;
+            }
+            if (!this.form.seeking_drinker) {
+              this.errors.drinker = 'Drinker is required';
+              hasError = true;
+            }
+            if (!this.form.seeking_location) {
+              this.errors.seeking_location = 'Location is required';
+              hasError = true;
+            }
         }
         break;
         case 7:
@@ -1059,6 +1124,7 @@ export default {
         formData.append('smoker', this.form.smoker === true ? '1' : '0');
         formData.append('drinker', this.form.drinker);
         formData.append('education', this.form.education);
+        formData.append('occupation', this.form.occupation);
         formData.append('jobTitle', this.form.jobTitle);
         formData.append('sports', this.form.sports);
         formData.append('hobbies', this.form.hobbies);
@@ -1068,6 +1134,14 @@ export default {
         formData.append('min_age', this.form.min_age); 
         formData.append('max_age', this.form.max_age); 
         formData.append('desired_children', this.form.desired_children); 
+        formData.append('seeking_location', this.form.seeking_location); 
+        formData.append('seeking_hair_color', this.form.seeking_hair_color); 
+        formData.append('seeking_gender', this.form.seeking_gender); 
+        formData.append('seeking_body_type', this.form.seeking_body_type); 
+        formData.append('seeking_marital_status', this.form.seeking_marital_status); 
+        formData.append('seeking_religion', this.form.seeking_religion); 
+        formData.append('seeking_smoker', this.form.seeking_smoker); 
+        formData.append('seeking_drinker', this.form.seeking_drinker); 
       }
 
       // Append matchmaker specific fields
@@ -1122,6 +1196,7 @@ export default {
           smoker: 'Smoker',
           drinker: 'Drinker',
           education: 'Education',
+          occupation: 'Occupation',
           jobTitle: 'Job Title',
           sports: 'Sports',
           hobbies: 'Hobbies',

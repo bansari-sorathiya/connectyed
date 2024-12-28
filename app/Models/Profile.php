@@ -41,9 +41,10 @@ class Profile extends Model
         'yearsexperience',
         'name', 
         'seeking',
-        'min_age',
-        'max_age',
-        'desired_children',
+        'occupation',
+        // 'min_age',
+        // 'max_age',
+        // 'desired_children',
 
     ];
 

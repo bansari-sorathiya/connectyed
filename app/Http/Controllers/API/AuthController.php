@@ -110,12 +110,24 @@ class AuthController extends Controller
                     'smoker' => 'required|boolean',
                     'drinker' => 'required|string|in:None,Occasionally,Often',
                     'education' => 'required|string|max:255',
+                    'occupation' => 'required|string|max:255',
                     'jobTitle' => 'required|string|max:255',
                     'sports' => 'required|string',
                     'hobbies' => 'required|string',
                     'englishLevel' => 'required|string|max:50',
                     'languages' => 'required|string',
                     'seeking' => 'required',
+                    "min_age" => "required",
+                    "max_age" => "required",
+                    "desired_children" => "required",
+                    "seeking_location" => "required",
+                    "seeking_hair_color" => "required",
+                    "seeking_gender" => "required",
+                    "seeking_body_type" => "required",
+                    "seeking_marital_status" => "required",
+                    "seeking_religion" => "required",
+                    "seeking_smoker" => "required",
+                    "seeking_drinker" => "required",
                 ]);
 
                 if ($clientValidator->fails()) {
@@ -127,6 +139,23 @@ class AuthController extends Controller
                     ], 422);
                 }
 
+                $seekingHtml = '
+                    <table>
+                        <tr><th>Seeking</th><td>' . $request->seeking . '</td></tr>
+                        <tr><th>Min Age</th><td>' . $request->min_age . '</td></tr>
+                        <tr><th>Max Age</th><td>' . $request->max_age . '</td></tr>
+                        <tr><th>Seeking Children</th><td>' . $request->children . '</td></tr>
+                        <tr><th>Desired Children</th><td>' . $request->desired_children . '</td></tr>
+                        <tr><th>Seeking Location</th><td>' . $request->seeking_location . '</td></tr>
+                        <tr><th>Seeking Hair Color</th><td>' . $request->seeking_hair_color . '</td></tr>
+                        <tr><th>Seeking Gender</th><td>' . $request->seeking_gender . '</td></tr>
+                        <tr><th>Seeking Body Type</th><td>' . $request->seeking_body_type . '</td></tr>
+                        <tr><th>Seeking Marital Status</th><td>' . $request->seeking_marital_status . '</td></tr>
+                        <tr><th>Seeking Religion</th><td>' . $request->seeking_religion . '</td></tr>
+                        <tr><th>Seeking Smoker</th><td>' . $request->seeking_smoker . '</td></tr>
+                        <tr><th>Seeking Drinker</th><td>' . $request->seeking_drinker . '</td></tr>
+                    </table>
+                ';
                 // Add client-specific profile data
                 $profileData = array_merge($profileData, [
                     'gender' => $request->gender,
@@ -140,18 +169,21 @@ class AuthController extends Controller
                     'smoker' => $request->smoker ? '1' : '0',
                     'drinker' => $request->drinker,
                     'education' => $request->education,
+                    'occupation' => $request->occupation,
                     'jobtitle' => $request->jobTitle,
                     'sports' => $request->sports,
                     'hobbies' => $request->hobbies,
-                    'english' => $request->englishLevel,
+                    'english_level' => $request->englishLevel,
                     'languages' => $request->languages,
-                    'seeking' => $request->seeking,
-                    'min_age' => $request->min_age,
-                    'max_age' => $request->max_age,
-                    'desired_children' => $request->desired_children,
+                    'seeking' => $seekingHtml
+                    // 'seeking' => $request->seeking,
+                    // 'min_age' => $request->min_age,
+                    // 'max_age' => $request->max_age,
+                    // 'desired_children' => $request->desired_children,
                 ]);
             }
-
+            // dump($request->all());
+            // dd($profileData);
             // Create the profile
             $profile = Profile::create($profileData);
 

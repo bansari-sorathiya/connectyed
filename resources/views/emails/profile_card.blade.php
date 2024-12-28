@@ -87,10 +87,10 @@
                     <th scope="col">Current Children</th>
                     <td>{{$client->profile->children}}</td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <th scope="col">Desired Children</th>
                     <td>{{$client->profile->desired_children}}</td>
-                </tr>
+                </tr> --}}
                 <tr>
                     <th scope="col">Religion</th>
                     <td>{{$client->profile->religion}}</td>
@@ -110,6 +110,10 @@
                 <tr>
                     <th scope="col">Education</th>
                     <td>{{$client->profile->education}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Occupation</th>
+                    <td>{{$client->profile->occupation}}</td>
                 </tr>
                 <tr>
                     <th scope="col">Job Title</th>
@@ -133,16 +137,16 @@
                 </tr>
                 <tr>
                     <th scope="col">Seeking</th>
-                    <td>{{$client->profile->seeking}}</td>
+                    <td>{!! $client->profile->seeking !!}</td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <th scope="col">Minimun Age</th>
                     <td>{{$client->profile->min_age}}</td>
                 </tr>
                 <tr>
                     <th scope="col">Maximum Age</th>
                     <td>{{$client->profile->max_age}}</td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>
