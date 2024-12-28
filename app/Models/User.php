@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Meeting;
+use App\Models\Profile;
+use App\Models\Seeking;
+use App\Models\Specialties;
+use App\Models\Availability;
+use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\CustomVerifyEmail;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Profile;
-use App\Models\Specialties;
-use App\Models\Availability;
-use App\Models\Meeting;
 use App\Models\MatchmakerClient; // Added this import for MatchmakerClient relationship
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
@@ -98,7 +99,11 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->hasOne(Profile::class);
     }
-
+    
+    public function seeking()
+    {
+        return $this->hasOne(Seeking::class);
+    }
     /**
      * Relationship with Specialties
      */

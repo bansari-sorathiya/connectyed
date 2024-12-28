@@ -135,10 +135,10 @@
                     <th scope="col">English level</th>
                     <td>{{$client->profile->english_level}}</td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <th scope="col">Seeking</th>
                     <td>{!! $client->profile->seeking !!}</td>
-                </tr>
+                </tr> --}}
                 {{-- <tr>
                     <th scope="col">Minimun Age</th>
                     <td>{{$client->profile->min_age}}</td>
@@ -149,6 +149,66 @@
                 </tr> --}}
             </tbody>
         </table>
+        <center>Seeking Information</center>
+       <table class="table table-light">
+            <tbody>
+                <tr>
+                    <th scope="col">Minimun Age</th>
+                    <td>{{$client->seeking->min_age}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Maximum Age</th>
+                    <td>{{$client->seeking->max_age}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Location</th>
+                    <td>{{$client->seeking->location}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Current Children</th>
+                    <td>{{$client->seeking->children}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Desired Children</th>
+                    <td>{{$client->seeking->desired_children}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Gender</th>
+                    <td> {{$client->seeking->gender}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Body Type</th>
+                    <td>{{$client->seeking->bodytype}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Hair Color</th>
+                    <td>{{$client->seeking->haircolor}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Marital Status</th>
+                    <td>{{$client->seeking->maritalstatus}}</td>
+                </tr>
+                
+                <tr>
+                    <th scope="col">Religion</th>
+                    <td>{{$client->seeking->religion}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Smoker</th>
+                    @if ($client->seeking->smoker == '0')
+                    <td>Yes</td>
+                    @else
+                    <td>No</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th scope="col">Drinker</th>
+                    <td>{{$client->seeking->drinker}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        
     </div>
     
 </div>

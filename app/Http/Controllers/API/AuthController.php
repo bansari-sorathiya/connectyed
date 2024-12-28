@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Seeking;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -139,23 +140,23 @@ class AuthController extends Controller
                     ], 422);
                 }
 
-                $seekingHtml = '
-                    <table>
-                        <tr><th>Seeking</th><td>' . $request->seeking . '</td></tr>
-                        <tr><th>Min Age</th><td>' . $request->min_age . '</td></tr>
-                        <tr><th>Max Age</th><td>' . $request->max_age . '</td></tr>
-                        <tr><th>Seeking Children</th><td>' . $request->children . '</td></tr>
-                        <tr><th>Desired Children</th><td>' . $request->desired_children . '</td></tr>
-                        <tr><th>Seeking Location</th><td>' . $request->seeking_location . '</td></tr>
-                        <tr><th>Seeking Hair Color</th><td>' . $request->seeking_hair_color . '</td></tr>
-                        <tr><th>Seeking Gender</th><td>' . $request->seeking_gender . '</td></tr>
-                        <tr><th>Seeking Body Type</th><td>' . $request->seeking_body_type . '</td></tr>
-                        <tr><th>Seeking Marital Status</th><td>' . $request->seeking_marital_status . '</td></tr>
-                        <tr><th>Seeking Religion</th><td>' . $request->seeking_religion . '</td></tr>
-                        <tr><th>Seeking Smoker</th><td>' . $request->seeking_smoker . '</td></tr>
-                        <tr><th>Seeking Drinker</th><td>' . $request->seeking_drinker . '</td></tr>
-                    </table>
-                ';
+                // $seekingHtml = '
+                //     <table>
+                //         <tr><th>Seeking</th><td>' . $request->seeking . '</td></tr>
+                //         <tr><th>Min Age</th><td>' . $request->min_age . '</td></tr>
+                //         <tr><th>Max Age</th><td>' . $request->max_age . '</td></tr>
+                //         <tr><th>Seeking Children</th><td>' . $request->children . '</td></tr>
+                //         <tr><th>Desired Children</th><td>' . $request->desired_children . '</td></tr>
+                //         <tr><th>Seeking Location</th><td>' . $request->seeking_location . '</td></tr>
+                //         <tr><th>Seeking Hair Color</th><td>' . $request->seeking_hair_color . '</td></tr>
+                //         <tr><th>Seeking Gender</th><td>' . $request->seeking_gender . '</td></tr>
+                //         <tr><th>Seeking Body Type</th><td>' . $request->seeking_body_type . '</td></tr>
+                //         <tr><th>Seeking Marital Status</th><td>' . $request->seeking_marital_status . '</td></tr>
+                //         <tr><th>Seeking Religion</th><td>' . $request->seeking_religion . '</td></tr>
+                //         <tr><th>Seeking Smoker</th><td>' . $request->seeking_smoker . '</td></tr>
+                //         <tr><th>Seeking Drinker</th><td>' . $request->seeking_drinker . '</td></tr>
+                //     </table>
+                // ';
                 // Add client-specific profile data
                 $profileData = array_merge($profileData, [
                     'gender' => $request->gender,
@@ -175,15 +176,31 @@ class AuthController extends Controller
                     'hobbies' => $request->hobbies,
                     'english_level' => $request->englishLevel,
                     'languages' => $request->languages,
-                    'seeking' => $seekingHtml
+                    // 'seeking' => $seekingHtml
                     // 'seeking' => $request->seeking,
                     // 'min_age' => $request->min_age,
                     // 'max_age' => $request->max_age,
                     // 'desired_children' => $request->desired_children,
                 ]);
+
+               $seekingData = [
+                'user_id' => $user->id,
+                'min_age' => $request->min_age,
+                'max_age' => $request->max_age,
+                'location' => $request->seeking_location,
+                'current_kids_number' => $request->children,
+                'desired_kids_number' => $request->desired_children,
+                'gender' => $request->seeking_gender,
+                'bodytype' => $request->seeking_body_type,
+                'haircolor' => $request->seeking_hair_color,
+                'maritalstatus' => $request->seeking_marital_status,
+                'religion' => $request->seeking_religion,
+                'smoker' => $request->seeking_smoker === 'No' ? 0 : 1,
+                'drinker' => $request->seeking_drinker,
+               ];
+               $seeking = Seeking::create($seekingData);
             }
-            // dump($request->all());
-            // dd($profileData);
+            
             // Create the profile
             $profile = Profile::create($profileData);
 

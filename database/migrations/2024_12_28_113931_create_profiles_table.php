@@ -43,7 +43,7 @@ return new class extends Migration
             $table->text('bio')->default(null)->nullable();
             $table->string('profile_image1',255)->default(null)->nullable();
             $table->string('profile_image2',255)->default(null)->nullable();
-            $table->text('seeking')->default(null)->nullable();
+            // $table->text('seeking')->default(null)->nullable();
             $table->string('occupation',150)->default(null)->nullable();
             $table->timestamps();
         });
