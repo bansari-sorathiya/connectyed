@@ -68,6 +68,10 @@
                     <td> {{$client->profile->country}}</td>
                 </tr>
                 <tr>
+                    <th scope="col">Ethnicity</th>
+                    <td> {{$client->profile->ethnicity}}</td>
+                </tr>
+                <tr>
                     <th scope="col">Body Type</th>
                     <td>{{$client->profile->bodytype}}</td>
                 </tr>
@@ -179,6 +183,10 @@
                 <tr>
                     <th scope="col">Body Type</th>
                     <td>{{$client->seeking->bodytype}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Ethnicity</th>
+                    <td>{{$client->seeking->ethnicity}}</td>
                 </tr>
                 <tr>
                     <th scope="col">Hair Color</th>

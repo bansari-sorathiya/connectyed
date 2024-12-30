@@ -882,6 +882,10 @@ export default {
                this.errors.bodyType = 'Body Type is required';
               hasError = true;
              }
+             if (!this.form.ethnicity) {
+              this.errors.ethnicity = 'Ethnicity is required';
+              hasError = true;
+            }
             if (!this.form.heightFeet) {
               this.errors.heightFeet = 'Height in Feet is required';
               hasError = true;

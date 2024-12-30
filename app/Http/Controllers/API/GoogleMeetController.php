@@ -691,7 +691,7 @@ class GoogleMeetController extends Controller
         // store request
         $existingRequests = Cache::get('blind_date_requests', []);
         $existingRequests[] = $requestData; // Add new request
-        Cache::put('blind_date_requests', $existingRequests, now()->addDays(30));
+        Cache::put('blind_date_requests', $existingRequests, now()->addDays(100));
 
         $client->load('profile'); // Eager load the profile relationship
         $admin = User::where('role','admin')->first();
