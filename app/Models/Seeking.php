@@ -25,6 +25,7 @@ class Seeking extends Model
         'religion',
         'smoker',
         'drinker',
+        'ethnicity',
     ];
 
     /**

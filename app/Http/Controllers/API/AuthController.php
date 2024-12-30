@@ -25,6 +25,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        // dd($request->all());
         try {
             // Start a database transaction
             DB::beginTransaction();
@@ -162,6 +163,7 @@ class AuthController extends Controller
                     'gender' => $request->gender,
                     'haircolor' => $request->hairColor,
                     'bodytype' => $request->bodyType,
+                    'ethnicity' => $request->ethnicity,
                     'height' => $request->heightFeet,
                     'inches' => $request->heightInches,
                     'maritalstatus' => $request->maritalStatus,
@@ -197,6 +199,7 @@ class AuthController extends Controller
                 'religion' => $request->seeking_religion,
                 'smoker' => $request->seeking_smoker === 'No' ? 0 : 1,
                 'drinker' => $request->seeking_drinker,
+                'ethnicity' => $request->seeking_ethnicity
                ];
                $seeking = Seeking::create($seekingData);
             }

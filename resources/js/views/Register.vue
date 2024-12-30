@@ -292,6 +292,13 @@
             :required="true"
             :error="errors.bodyType"
           />
+          <select-option
+              label="Ethnicity"
+              :options="ethnicity"
+              v-model="form.ethnicity"
+              :required="true"
+              :error="errors.ethnicity"
+            />
           <div class="flex gap-4">
             <input-text
               label="Height (Feet)"
@@ -546,6 +553,18 @@
             />
             </div>
             </div>
+
+          <div class="flex gap-5">
+            <div class="flex-1">
+            <select-option
+              label="Ethnicity"
+              :options="ethnicity"
+              v-model="form.seeking_ethnicity"
+              :required="true"
+              :error="errors.seeking_ethnicity"
+            />
+            </div>
+          </div>
       </div>
       <!-- Step 4: Terms and Privacy (Both Matchmaker and Client) -->
       <div v-if="(currentStep === 4 && form.ismatchmaker) || (currentStep === 7 && !form.ismatchmaker)">
@@ -683,6 +702,7 @@ export default {
         seeking: "", //New field for seeking 
         min_age: "",
         max_age: "",
+        ethnicity: "",
         desired_children:"",
         seeking_location: "",
         seeking_hair_color: "",
@@ -692,6 +712,7 @@ export default {
         seeking_religion: "",
         seeking_smoker: "",
         seeking_drinker: "",
+        seeking_ethnicity: "",
       },
       errors: {},
       countries: countries, // Use the imported countries array
@@ -705,6 +726,7 @@ export default {
         'Islam', 'Jainism', 'Judaism', 'Shinto', 'Sikhism',
         'Taoism', 'Zoroastrianism', 'Other'
       ],
+      ethnicity: ['White/Caucasian','Black/African','Hispanic/Latin','Indian','Asian/Pacific Islander','Mixed race','Other'],
       yesNoOptions: ['Yes', 'No'],
       drinkerOptions: ['None', 'Occasionally', 'Often'],
       englishLevels: ['Beginner', 'Intermediate', 'Proficient'],
@@ -1006,6 +1028,10 @@ export default {
               this.errors.seeking_location = 'Location is required';
               hasError = true;
             }
+            if (!this.form.seeking_ethnicity) {
+              this.errors.seeking_ethnicity = 'Ethnicity is required';
+              hasError = true;
+            }
         }
         break;
         case 7:
@@ -1116,6 +1142,7 @@ export default {
         formData.append('gender', this.form.gender);
         formData.append('hairColor', this.form.hairColor);
         formData.append('bodyType', this.form.bodyType);
+        formData.append('ethnicity', this.form.ethnicity); 
         formData.append('heightFeet', this.form.heightFeet);
         formData.append('heightInches', this.form.heightInches);
         formData.append('maritalStatus', this.form.maritalStatus);
@@ -1142,6 +1169,7 @@ export default {
         formData.append('seeking_religion', this.form.seeking_religion); 
         formData.append('seeking_smoker', this.form.seeking_smoker); 
         formData.append('seeking_drinker', this.form.seeking_drinker); 
+        formData.append('seeking_ethnicity', this.form.seeking_ethnicity); 
       }
 
       // Append matchmaker specific fields

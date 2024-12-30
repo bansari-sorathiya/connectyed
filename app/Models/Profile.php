@@ -42,6 +42,7 @@ class Profile extends Model
         'name', 
         'seeking',
         'occupation',
+        'ethnicity',
         // 'min_age',
         // 'max_age',
         // 'desired_children',
