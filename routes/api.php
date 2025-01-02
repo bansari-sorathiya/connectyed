@@ -34,8 +34,8 @@ Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])
     // Public route to get minimal client data for a matchmaker
 Route::get('/public/matchmaker/clients/{matchmakerId}', [ClientController::class, 'getPublicClientsByMatchmakerId']);
 
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('throttle:5,1'); // 5 attempts per minute
-Route::post('password/reset', [ForgotPasswordController::class, 'reset'])->middleware('throttle:5,1');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('throttle:5,1'); // 5 attempts per minute
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->middleware('throttle:5,1');
 
 // FREE 1 ON 1 BLIND DATE ROUTE
 Route::post('/free-blind-date-request', [GoogleMeetController::class, 'freeBlindDateRequest']);
